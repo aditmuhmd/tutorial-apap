@@ -76,4 +76,21 @@ public class HotelController {
 
         return "view-hotel";
     }
+
+    @RequestMapping("/hotel/update/id-hotel/{idHotel}/no-telepon/{noTelepon}")
+    public String updateNoTeleponHotel(
+            @PathVariable(value = "idHotel") String idHotel,
+            @PathVariable(value = "noTelepon") String noTelepon, Model model
+    ){
+        // Mengupdate no Telepon sesuai dengan idHotel
+        HotelModel hotel = hotelService.updateNoTeleponHotel(idHotel, noTelepon);
+
+        if (hotel != null){
+            // Add variabel HotelModel ke 'hotel' untuk dirender pada thymeleaf
+            model.addAttribute("hotel", hotel);
+            return "update-noTelepon";
+        } else {
+            return "errorMsg";
+        }
+    }
 }

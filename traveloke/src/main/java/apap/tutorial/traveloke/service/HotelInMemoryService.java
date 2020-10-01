@@ -47,4 +47,9 @@ public class HotelInMemoryService implements HotelService {
         }
         return null;
     }
+
+    @Override
+    public void deleteHotel(String idHotel) {
+        listHotel.removeIf(hotel -> idHotel.equals(hotel.getIdHotel()));
+    }
 }

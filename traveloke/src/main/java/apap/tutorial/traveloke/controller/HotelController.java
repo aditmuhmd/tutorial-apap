@@ -93,4 +93,16 @@ public class HotelController {
             return "errorMsg";
         }
     }
+
+    @RequestMapping("hotel/delete/id-hotel/{idHotel}")
+    public String deleteHotel(@PathVariable(value = "idHotel") String idHotel, Model model
+    ){
+        // Memanggil fungsi delete hotel
+        hotelService.deleteHotel(idHotel);
+
+        // Add variable id Hotel ke 'idHotel' untuk dirender di thymeleaf
+        model.addAttribute("idHotel", idHotel);
+
+        return "delete-hotel";
+    }
 }

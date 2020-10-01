@@ -58,10 +58,15 @@ public class HotelController {
         // Mendapatkan HotelModel sesuai dengan idHotel
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
 
-        // Add variabel HotelModel ke 'hotel' untuk dirender pada thymeleaf
-        model.addAttribute("hotel", hotel);
+        // Mengecek apakah id hotel ada dalam database atau tidak
+        if (hotel != null){
+            // Add variabel HotelModel ke 'hotel' untuk dirender pada thymeleaf
+            model.addAttribute("hotel", hotel);
 
-        return "view-hotel";
+            return "view-hotel";
+        } else {
+            return "errorMsg";
+        }
     }
 
     @RequestMapping("/hotel/view/id-hotel/{idHotel}")
@@ -71,10 +76,15 @@ public class HotelController {
         // Mendapatkan HotelModel sesuai dengan idHotel
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
 
-        // Add variabel HotelModel ke 'hotel' untuk dirender pada thymeleaf
-        model.addAttribute("hotel", hotel);
+        // Mengecek apakah id hotel ada dalam database atau tidak
+        if (hotel != null){
+            // Add variabel HotelModel ke 'hotel' untuk dirender pada thymeleaf
+            model.addAttribute("hotel", hotel);
 
-        return "view-hotel";
+            return "view-hotel";
+        } else {
+            return "errorMsg";
+        }
     }
 
     @RequestMapping("/hotel/update/id-hotel/{idHotel}/no-telepon/{noTelepon}")
@@ -85,9 +95,11 @@ public class HotelController {
         // Mengupdate no Telepon sesuai dengan idHotel
         HotelModel hotel = hotelService.updateNoTeleponHotel(idHotel, noTelepon);
 
+        // Mengecek apakah id hotel ada dalam database atau tidak
         if (hotel != null){
             // Add variabel HotelModel ke 'hotel' untuk dirender pada thymeleaf
             model.addAttribute("hotel", hotel);
+
             return "update-noTelepon";
         } else {
             return "errorMsg";
@@ -97,12 +109,20 @@ public class HotelController {
     @RequestMapping("hotel/delete/id-hotel/{idHotel}")
     public String deleteHotel(@PathVariable(value = "idHotel") String idHotel, Model model
     ){
-        // Memanggil fungsi delete hotel
-        hotelService.deleteHotel(idHotel);
+        // Mendapatkan HotelModel sesuai dengan idHotel
+        HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
 
-        // Add variable id Hotel ke 'idHotel' untuk dirender di thymeleaf
-        model.addAttribute("idHotel", idHotel);
+        // Mengecek apakah id hotel ada dalam database atau tidak
+        if (hotel != null){
+            // Add variable id Hotel ke 'idHotel' untuk dirender di thymeleaf
+            model.addAttribute("idHotel", idHotel);
 
-        return "delete-hotel";
+            // Melakukan fitur delete dari hotel
+            hotelService.deleteHotel(idHotel);
+
+            return "delete-hotel";
+        } else {
+            return "errorMsg";
+        }
     }
 }

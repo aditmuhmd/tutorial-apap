@@ -59,3 +59,39 @@ sedangkan@PathVariable tidak bisa memiliki nilai default.
 - [ ] Kenapa saya harus belajar APAP?
 - [ ] Kenapa saya harus memahami Spring Framework secara lengkap?
 - [ ] Apa Kesulitan nanti yang akan datang dari pengerjaan tutorial minggu kepedannya dan proyek kelompok?
+
+## Tutorial 2
+**1. Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut:  
+http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom&noTelepon=081xxx  
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi**  
+Terjadi error "*Error resolving template [add-hotel]*". Hal ini terjadi dikarenakan controller yang ingin mencari 
+template/html tetapi belum ada htmlnya atau memanggil template yang tidak ada. Oleh karena itu, untuk memperbaiki 
+error ini, kita harus membuat sebuah template "*add-hotel.html*" di dalam templates yang bisa dipanggil oleh controller.
+
+**2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? 
+Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat**  
+Implementasi dari anotasi @Autowired merupakan implementasi konsep Dependency Injection dikarenakan @Autowired sendiri
+secara otomatis menginject dependensi dari sebuah class. Cara kerja yang dilakukan dalam konteks service dan controller
+yang saya buat adalah di dalam controller yang saya buat, @Autowired secara otomatis meningject service yang diimplementasi
+oleh "hotelService". Service yang dibuat pada kali ini adalah "HotelInMemoryService". Jadi interface hotelService yang 
+diambil menggunakan @Autowired dapat menggunakan method class "HotelInMemoryService" di dalam controller.
+
+
+**3. Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut:
+http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.**  
+Hal ini terjadi error *Required String parameter 'noTelepon' is not present*. Hal ini terjadi karena ketika melakukan
+request mapping, ada salah satu nilai yaitu "noTelepon" yang tidak ada di dalam URL sehingga terjadi error diatas. Hal
+ini bisa diselesaikan dengan cara memberi URL yang lebih tepat dengan ada parameter noTelepon.
+
+**4. Jika Papa APAP ingin melihat Hotel dengan nama Papa APAP, link apa yang harus
+diakses?**  
+link yang harus diakses: http://localhost:8080/hotel/view/id-hotel/1 atau http://localhost:8080/hotel/view?idHotel=1
+
+**5. Tambahkan 1 contoh Hotel lainnya sesukamu. Lalu cobalah untuk mengakses
+http://localhost:8080/hotel/viewall , apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.**  
+Pada kali ini saya juga membuat hotel Mama AMAM sehingga ketika mengakses link diatas, maka akan muncul halaman seperti
+dibawah:  
+[
+![screenshot](https://user-images.githubusercontent.com/60350747/94825043-e52f7a00-042f-11eb-9460-74639580002e.jpg)
+](url)

@@ -22,7 +22,7 @@ public class KamarController {
     @Autowired
     private KamarService kamarService;
 
-    @GetMapping("/kamar/add/{idHote}")
+    @GetMapping("/kamar/add/{idHotel}")
     private String addKamarFormPage(
             @PathVariable Long idHotel,
             Model model
@@ -40,8 +40,27 @@ public class KamarController {
             @ModelAttribute KamarModel kamar,
             Model model
     ){
-        kamarService.addKamar( kamar);
+        kamarService.addKamar(kamar);
         model.addAttribute("kamar", kamar);
         return "add-kamar";
+    }
+
+    @GetMapping("/kamar/change/{noKamar}")
+    private String changeKamarFormPage(
+            @PathVariable Long noKamar, Model model
+    ){
+        KamarModel kamar = kamarService.getKamarByNoKamar(noKamar);
+        model.addAttribute("kamar", kamar);
+        return "form-update-kamar";
+    }
+
+    @PostMapping("/kamar/change")
+    private String changeKamarFormSubmit(
+            @ModelAttribute KamarModel kamar,
+            Model model
+    ){
+        KamarModel kamarUpdated = kamarService.updateKamar(kamar);
+        model.addAttribute("kamar", kamarUpdated);
+        return "update-kamar";
     }
 }

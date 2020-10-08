@@ -19,7 +19,7 @@ public class KamarModel implements Serializable {
     @NotNull
     @Size(max=30)
     @Column(name="namaKamar", nullable = false)
-    private Integer namaKamar;
+    private String namaKamar;
 
     @NotNull
     @Column(name="tipe", nullable = false)
@@ -43,11 +43,11 @@ public class KamarModel implements Serializable {
         this.noKamar = noKamar;
     }
 
-    public Integer getNamaKamar() {
+    public String getNamaKamar() {
         return namaKamar;
     }
 
-    public void setNamaKamar(Integer namaKamar) {
+    public void setNamaKamar(String namaKamar) {
         this.namaKamar = namaKamar;
     }
 

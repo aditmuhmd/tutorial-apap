@@ -6,6 +6,7 @@
 </head>
 <body>
     <h2>Daftar Seluruh Hotel</h2>
+    <td><a th:href="@{/}">Home</a></td>
     <div th:each="hotel: ${listHotel}">
         <h3 th:text="'Id Hotel: '+ ${hotel.id}"></h3>
         <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>

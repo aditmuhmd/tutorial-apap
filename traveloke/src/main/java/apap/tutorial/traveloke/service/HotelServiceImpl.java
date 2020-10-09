@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -27,9 +28,11 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public HotelModel getHotelByIdHotel(Long idHotel) {
-        try{
+        try {
             return hotelDb.findById(idHotel).get();
         } catch (NullPointerException nullPointerException) {
+            return null;
+        } catch (NoSuchElementException noSuchElementException) {
             return null;
         }
     }

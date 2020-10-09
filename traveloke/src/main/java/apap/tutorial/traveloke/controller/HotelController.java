@@ -64,7 +64,7 @@ public class HotelController {
             Model model
     ){
         HotelModel hotelUpdated = hotelService.updateHotel(hotel);
-        model.addAttribute("hotel", hotel);
+        model.addAttribute("hotel", hotelUpdated);
         return "update-hotel";
     }
 
@@ -78,5 +78,18 @@ public class HotelController {
         model.addAttribute("hotel", hotel);
         model.addAttribute("listKamar", listKamar);
         return "view-hotel";
+    }
+
+    @GetMapping("hotel/delete/{idHotel}")
+    public String deleteHotel(
+            @PathVariable Long idHotel
+    ){
+        List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
+        if (listKamar.isEmpty()){
+            hotelService.deleteById(idHotel);
+            return "delete-hotel";
+        } else {
+            return "errorMsg";
+        }
     }
 }

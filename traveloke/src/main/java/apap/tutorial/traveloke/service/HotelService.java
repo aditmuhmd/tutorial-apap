@@ -19,4 +19,7 @@ public interface HotelService {
 
     // Method untuk view all Hotel
     List<HotelModel> findAllByOrderByIdDesc();
+
+    // Method untuk delete Hotel
+    void deleteById(Long Id);
 }

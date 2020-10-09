@@ -49,4 +49,9 @@ public class HotelServiceImpl implements HotelService {
     public List<HotelModel> findAllByOrderByIdDesc(){
         return hotelDb.findAllByOrderByIdDesc();
     }
+
+    @Override
+    public void deleteById(Long Id) {
+        hotelDb.deleteById(Id);
+    }
 }

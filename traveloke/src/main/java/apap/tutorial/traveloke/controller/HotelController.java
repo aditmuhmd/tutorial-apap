@@ -54,6 +54,9 @@ public class HotelController {
             Model model
     ){
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
+        if (hotel.equals(null)){
+            return "errorMsgIdHotel";
+        }
         model.addAttribute("hotel", hotel);
         return "form-update-hotel";
     }
@@ -64,6 +67,9 @@ public class HotelController {
             Model model
     ){
         HotelModel hotelUpdated = hotelService.updateHotel(hotel);
+        if (hotel.equals(null)){
+            return "errorMsgIdHotel";
+        }
         model.addAttribute("hotel", hotelUpdated);
         return "update-hotel";
     }
@@ -74,10 +80,14 @@ public class HotelController {
             Model model
     ){
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
+        if (hotel.equals(null)) {
+            return "errorMsgIdHotel";
+        }
         List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
         model.addAttribute("hotel", hotel);
         model.addAttribute("listKamar", listKamar);
         return "view-hotel";
+
     }
 
     @GetMapping("hotel/delete/{idHotel}")

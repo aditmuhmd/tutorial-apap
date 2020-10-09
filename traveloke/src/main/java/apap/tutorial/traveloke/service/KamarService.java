@@ -17,4 +17,7 @@ public interface KamarService {
 
     // Method untuk update kamar
     KamarModel updateKamar(KamarModel kamar);
+
+    // Method untuk delete kamar
+    void deleteByNoKamar(Long noKamar);
 }

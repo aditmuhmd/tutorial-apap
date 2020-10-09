@@ -43,4 +43,9 @@ public class KamarServiceImpl implements KamarService{
             return null;
         }
     }
+
+    @Override
+    public void deleteByNoKamar(Long noKamar) {
+        kamarDb.deleteByNoKamar(noKamar);
+    }
 }

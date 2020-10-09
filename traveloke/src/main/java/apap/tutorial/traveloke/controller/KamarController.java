@@ -63,4 +63,12 @@ public class KamarController {
         model.addAttribute("kamar", kamarUpdated);
         return "update-kamar";
     }
+
+    @GetMapping("/kamar/delete/{noKamar}")
+    private String deleteKamar(
+            @PathVariable Long noKamar
+    ){
+        kamarService.deleteByNoKamar(noKamar);
+        return "delete-kamar";
+    }
 }

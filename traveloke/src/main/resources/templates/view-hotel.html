@@ -10,8 +10,8 @@
     <h3 th:text="'Id hotel: '+ ${hotel.id}"></h3>
     <h3 th:text="'Nama Hotel: '+ ${hotel.namaHotel}"></h3>
     <h3 th:text="'Alamat Hotel: '+ ${hotel.alamat}"></h3>
-    <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>    
-    <td><a th:href="@{/hotel/change/}+${hotel.id}">Change Data Hotel</a></td>
+    <h3 th:text="'Nomor Telepon: '+ ${hotel.nomorTelepon}"></h3>
+    <td><a th:href="@{/hotel/change/}+${hotel.id}">Change Data Hotel</a></td> <br>
     <td><a th:href="@{/hotel/delete/}+${hotel.id}">Delete Hotel</a></td>
 </section>
 <section>
@@ -25,7 +25,8 @@
         <h3 th:if="${kamar.tipe == 2}">Tipe : President Suite</h3>
 
         <h3 th:text="'Kapasitar kamar: '+ ${kamar.kapasitasKamar}"></h3>
-        <td><a th:href="@{/kamar/change/}+${kamar.noKamar}">Change Data Kamar</a></td>
+        <td><a th:href="@{/kamar/change/}+${kamar.noKamar}">Change Data Kamar</a></td> <br>
+        <td><a th:href="@{/kamar/delete/}+${kamar.noKamar}">Delete Kamar</a></td>
     </div><br><br>
     <td><a th:href="@{/kamar/add/}+${hotel.id}">Add Kamar</a></td>
 </section>

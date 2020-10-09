@@ -8,8 +8,13 @@ import java.util.List;
 
 @Repository
 public interface KamarDb extends JpaRepository<KamarModel,Long> {
+    // Method mencari list kamar berdasarkan Id Hotel
     List<KamarModel> findByHotelId(Long hotelId);
 
+    // Method mencari kamar dari list Kamar
     KamarModel findByNoKamar(Long noKamar);
+
+    // Method menghapus kamar
+    void deleteByNoKamar(Long noKamar);
 }
 

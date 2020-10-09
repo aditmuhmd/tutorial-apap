@@ -9,7 +9,7 @@
 <form th:action="@{/hotel/change}"th:object="${hotel}" method = "POST">
     <input type="hidden" th:field="*{id}">
     Nama Hotel: <br>
-    <input type="text" name="namaHotel" th:value=""*{namaHotel}"/>
+    <input type="text" name="namaHotel" th:value="*{namaHotel}"/>
     <br><br>
     Alamat : <br>
     <input type="type" name="alamat" th:value="*{alamat}"/>

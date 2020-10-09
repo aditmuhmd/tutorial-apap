@@ -17,7 +17,7 @@ public interface HotelService {
     // Method untuk update Hotel
     HotelModel updateHotel(HotelModel hotel);
 
-    // Method untuk view all Hotel
+     // Method untuk view all Hotel
     List<HotelModel> findAllByOrderByIdDesc();
 
     // Method untuk delete Hotel

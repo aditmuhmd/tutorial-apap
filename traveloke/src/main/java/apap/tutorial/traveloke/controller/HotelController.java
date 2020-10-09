@@ -89,7 +89,7 @@ public class HotelController {
             hotelService.deleteById(idHotel);
             return "delete-hotel";
         } else {
-            return "errorMsg";
+            return "errorMsgHotel";
         }
     }
 }

@@ -95,3 +95,42 @@ dibawah:
 [
 ![screenshot](https://user-images.githubusercontent.com/60350747/94825043-e52f7a00-042f-11eb-9460-74639580002e.jpg)
 ](url)
+
+## Tutorial 3
+### What I have learned today  
+Pada tutorial minggu ketiga, saya mempelajari cara menggunakan **database server** dengan model CRUD dalam spring 
+project ke dalam project traveloke yang telah saya buat di tutorial minggu lalu. Pada tutorial ini saya menggunakan 
+library **JPA** yang melakukan pendekatan object relational mapping seperti gambar relasi yang sudah digambarkan. 
+Menurut saya tutorial minggu ini cukup menarik karena setiap data yang saya lakukan fungsinya dapat selalu disimpan 
+di dalam database yang sudah saya buat dan langsung bisa di cek di http://localhost/phpmyadmin.
+
+### Pertanyaan  
+1. **Pada class KamarDb, terdapat method findByHotelId, apakah kegunaan dari method tersebut?**  
+Method findByHotelId berguna untuk mencari data kamar dari Kamar Model berdasarkan Id hotel dan disimpan dalam bentuk 
+List<Kamar Model>
+
+2. **Pada class HotelController, jelaskan perbedaan method addHotelFormPage dan addHotelSubmit?**  
+Method addHotelFormPage berfungsi sebagai pengambil data (dalam kasus ini id Hotel) dan menampilkan tampilan html yang 
+berisi form untuk menambah Hotel kedalam database dengan bantuan fungsi GetMapping. Sedangkan method addHotelSubmit 
+dijalankan untuk mengambil masukan dari html form yang telah diisi dengan bantuan fungsi PostMapping. Post biasanya 
+dilakukan apabila ingin melakukan perubahan isi dari data di dalam database.  
+
+3. **Jelaskan kegunaan dari JPA Repository!**  
+JPA Repository adalah sebuah library yang mempertahankan java objects ke database menggunakan ORM (Object Relational 
+Mapping). JPA berguna untuk menghubungkan relational database lokal dengan java, membuat repository custom di lokal, dan 
+memanipulasi data tanpa menggunakan query walaupun kadang tetap ada penggunaan query.  
+
+4. **Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara HotelModel dan KamarModel dibuat?**  
+HotelModel:  
+@OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 1 hotel bisa memiliki banyak kamar
+KamarModel:  
+@ManyToOne(fetch = FetchType.EAGER, optional = false) // banyak kamar bisa dimiliki oleh 1 hotel  
+@JoinColumn(name = "hotelId", referencedColumnName = "id", nullable = false) // menyambungkan hotelId pada kamar dengan id pada Hotel  
+@OnDelete(action = OnDeleteAction.CASCADE) // Menghapus keseluruhan bila terjadi kasus delete
+
+5. **Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER!**
+- FetchType.LAZY: melakukan load untuk collection object child yang diinginkan saat object parent di-fetch via getter 
+method. FetchType.LAZY juga merupakan default fetching untuk OnetoMany dan ManytoMany. 
+- CascadeType.ALL: menyediakan property cascade untuk seluruh object yang memiliki relasi. Apabila object dihapus maka 
+entity juga akan terhapus.
+- FetchType.EAGER: melakukan load untuk semua object child sesaat setelah object parent di-fetch.

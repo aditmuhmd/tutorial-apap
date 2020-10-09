@@ -122,7 +122,7 @@ memanipulasi data tanpa menggunakan query walaupun kadang tetap ada penggunaan q
 
 4. **Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara HotelModel dan KamarModel dibuat?**  
 HotelModel:  
-@OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 1 hotel bisa memiliki banyak kamar
+@OneToMany(mappedBy = "hotel", fetch = FetchType.LAZY, cascade = CascadeType.ALL) // 1 hotel bisa memiliki banyak kamar  
 KamarModel:  
 @ManyToOne(fetch = FetchType.EAGER, optional = false) // banyak kamar bisa dimiliki oleh 1 hotel  
 @JoinColumn(name = "hotelId", referencedColumnName = "id", nullable = false) // menyambungkan hotelId pada kamar dengan id pada Hotel  

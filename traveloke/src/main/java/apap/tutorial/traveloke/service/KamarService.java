@@ -20,4 +20,7 @@ public interface KamarService {
 
     // Method untuk delete kamar
     void deleteByNoKamar(Long noKamar);
+
+    // Method untuk dapat kamar dari nama dan kapasitas
+    KamarModel getKamarByNamaKamarDanKapasitasKamar(String namaKamar, Integer kapasitasKamar);
 }

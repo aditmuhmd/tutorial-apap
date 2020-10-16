@@ -7,7 +7,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <nav th:replace="fragments/fragment :: navbar (brand='Update Hotel')"></nav>
     <h2>Data Hotel berhasil diperbaharui!</h2>
     <a href="/">kembali</a>
 </body>

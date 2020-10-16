@@ -7,8 +7,7 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
-    <h2>Kamar berhasil ditambahkan</h2>
-    <a href="/">kembali</a>
+    <nav th:replace="fragments/fragment :: navbar (brand='Add Kamar')"></nav>
+    <h2>kamar berhasil ditambahkan</h2>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Form Add Kamar</title>
@@ -7,24 +7,38 @@
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<nav th:replace="fragments/fragment :: navbar (brand='Add Kamar')"></nav>
+<nav th:replace="fragments/fragment :: navbar (brand='Tambah Kamar')"></nav>
 <h3>Tambah Kamar</h3>
-<form th:action="@{/kamar/add}" th:object="${kamar}" method = "POST">
-    <input type="hidden" th:field="*{hotel}"/>
-    Nama Kamar: <br>
-    <input type="text" name="namaKamar"/>
-    <br>
-    Tipe Kamar : <br>
-    <select name="tipe">
-        <option value="0">Deluxe</option>
-        <option value="1">Executive</option>
-        <option value="2">President Suite</option>
-    </select>
-    <br>
-    Kapasitas Kamar : <br>
-    <input type="number" name = "kapasitasKamar"/>
-    <br>
-    <button type = "submit">Submit</button>
+<form th:action="@{/kamar/add}"th:object="${hotel}" method = "POST">
+    <input type="hidden" th:field="*{id}"/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="text-center">Nama</th>
+            <th class="text-center">Tipe Kamar</th>
+            <th class="text-center">Kapasitas Kamar</th>
+            <th><button type="submit" name="add" class="btn btn-primary">Tambah</button></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="kamar, iterationStatus : *{listKamar}">
+            <td><input class="form-control" type="text" th:field="*{listKamar[__${iterationStatus.index}__].namaKamar}"/></td>
+            <td><select class="form-control" th:field="*{listKamar[__${iterationStatus.index}__].tipe}">
+                <option value="0">Deluxe</option>
+                <option value="1">Executive</option>
+                <option value="2">President Suite</option>
+            </select></td>
+            <td><input class="form-control" type="number" th:field="*{listKamar[__${iterationStatus.index}__].kapasitasKamar}" min="0"/></td>
+            <td><button th:value="__${iterationStatus.index}__" class="btn btn-danger" name="delete">Hapus</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button type="submit" class="btn btn-success" name="save">Simpan</button></td>
+        </tr>
+        </tbody>
+    </table>
 </form>
 </body>
 </html>

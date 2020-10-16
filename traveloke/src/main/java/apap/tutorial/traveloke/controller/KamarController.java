@@ -69,7 +69,6 @@ public class KamarController {
             @ModelAttribute HotelModel hotel,
             Model model
     ){
-        System.out.println(hotel.getId());
         HotelModel hotelModel = hotelService.getHotelByIdHotel(hotel.getId());
         for (KamarModel kamar : hotel.getListKamar()) {
             kamar.setHotel(hotelModel);

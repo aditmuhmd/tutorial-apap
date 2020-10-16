@@ -134,3 +134,20 @@ method. FetchType.LAZY juga merupakan default fetching untuk OnetoMany dan Manyt
 - CascadeType.ALL: menyediakan property cascade untuk seluruh object yang memiliki relasi. Apabila object dihapus maka 
 entity juga akan terhapus.
 - FetchType.EAGER: melakukan load untuk semua object child sesaat setelah object parent di-fetch.
+
+## Tutorial 4
+### Pertanyaan
+**1.Jelaskan perbedaan th:include dan th:replace**  
+include merupakan fungsi memasukkan konten fragment ke dalam tag host. Sedangkan replace merupakan fungsi menggantikan 
+tag host yang dituju dengan tag host yang mendefinisikan sebuah fragmen. Nantinya tag host yang dituju akan digantikan
+oleh tag host yang sudah terdefinisi.  
+**2. Jelaskan apa fungsi dari th:object!**  
+th:object berfungsi untuk men-spesifikasi suatu nilai object yang terikat dengan data dari formulir atau elemen HTML.  
+**3. Jelaskan perbedaan dari * dan $ pada saat pengguan th:object! Kapan harus dipakai?**  
+(*) = akan mengevaluasi atribut atau varible saja dari th:object sedangkan ($) = akan mengevaluasi **keseluruhan** atribut 
+atau variabel pada th:object.  
+**4.Bagaimana kamu menyelesaikan latihan nomor 3?**  
+Pada fragment.html, saya menggunakan *div class="navbar-text ml-auto" th:text="${brand}"*. *ml-auto* 
+digunakan agar terdapat text pada bagian kanan navbar yang sudah disesuaikan untuk setiap HTML. Kemudian, pada halaman 
+HTML yang ingin saya berikan text, saya menambahkan navbar (brand='NamaHTML/NamaHalaman') pada setiap pemanggilan *nav*
+di dalam body. Hal ini saya lakukan agar brand bisa diganti di seluruh html sesuai dengan keinginan saya.

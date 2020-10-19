@@ -55,7 +55,7 @@ public class KamarController {
 
     @PostMapping(value="/kamar/add", params={"delete"})
     public String deleteRowKamar(@ModelAttribute HotelModel hotel,
-                            final BindingResult bindingResult,
+//                            final BindingResult bindingResult,
                             final HttpServletRequest req,
                             Model model){
         final Integer row = Integer.valueOf(req.getParameter("delete"));

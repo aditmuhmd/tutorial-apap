@@ -19,5 +19,5 @@ public interface KamarService {
     KamarModel updateKamar(KamarModel kamar);
 
     // Method untuk delete kamar
-    void deleteByNoKamar(Long noKamar);
+    void deleteKamar(KamarModel kamar);
 }

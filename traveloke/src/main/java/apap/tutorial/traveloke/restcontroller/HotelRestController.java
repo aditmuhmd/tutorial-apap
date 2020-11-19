@@ -36,10 +36,10 @@ public class HotelRestController {
 
     @GetMapping(value = "/hotel/{idHotel}")
     private HotelModel retrieveHotel(@PathVariable("idHotel") Long idHotel){
-        try{
+        try {
             return hotelRestService.getHotelByIdHotel(idHotel);
 
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "ID Hotel"+ String.valueOf(idHotel)+ " Not found"
             );
@@ -52,11 +52,11 @@ public class HotelRestController {
             hotelRestService.deleteHotel(idHotel);
             return ResponseEntity.ok("Hotel with ID " + String.valueOf(idHotel)+ " Deleted!");
 
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Hotel wit ID "+ String.valueOf(idHotel)+ " Not found"
             );
-        }catch (UnsupportedOperationException e){
+        } catch (UnsupportedOperationException e){
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, " Hotel still has kamar, please delete the kamar first");
         }
@@ -70,8 +70,7 @@ public class HotelRestController {
         try{
             return hotelRestService.changeHotel(idHotel, hotel);
 
-
-        }catch ( NoSuchElementException e){
+        } catch ( NoSuchElementException e){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Hotel wit ID "+ String.valueOf(idHotel)+ " Not found"
             );
@@ -86,4 +85,10 @@ public class HotelRestController {
 
     @GetMapping(value = "/full")
     Mono<HotelDetail> postStatus() { return hotelRestService.postStatus(); }
+
+    @GetMapping(value = "/hotel/find")
+    private Mono<String> getHotelsByCity(@RequestParam String cityName){
+        String cityInput = cityName.replace('-', ' ');
+        return hotelRestService.getHotelsByCity(cityInput);
+    }
 }

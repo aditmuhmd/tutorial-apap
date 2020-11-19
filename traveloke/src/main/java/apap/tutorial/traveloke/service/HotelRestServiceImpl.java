@@ -82,4 +82,15 @@ public class HotelRestServiceImpl implements HotelRestService{
                 .retrieve()
                 .bodyToMono(HotelDetail.class);
     }
+
+    @Override
+    public Mono<String> getHotelsByCity(String city) {
+        WebClient webClient = WebClient.builder().baseUrl(Setting.cityUrl).build();
+        return webClient.get().uri(uriBuilder -> uriBuilder.queryParam("locale", "en_US")
+                .queryParam("query", city).build())
+                .header("x-rapidapi-key", "4f9bbfb591msh0178eeaa2aabf77p1825f4jsna1ad31aa1e72")
+                .header("x-rapidapi-host", "hotels-com-free.p.rapidapi.com")
+                .header("useQueryString", "true")
+                .retrieve().bodyToMono(String.class);
+    }
 }

@@ -173,3 +173,37 @@ headers, body, dan status. Sedangkan BindingResult merupakan sebuah interface ya
 digunakan validasi adanya kesalahan ataupun *binding specific analysis and model building*. Contoh kesalahan tersebut 
 adalah adanya field yang diperlukan dan adanya ketidakcocokan jenis atau kesalahan dalam melakukan pemanggilan method. Sumber:  
 https://www.baeldung.com/spring-response-entity dan https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/validation/BindingResult.html
+
+## Tutorial 6
+### Pertanyaan
+**1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep 
+tersebut diimplementasi?** 
+Otentikasi adalah proses untuk seorang pengguna mendapatkan hak akses kepasa suatu sistem yang sudah dibuat. Contoh kode
+yang diimplementasikan pada bagian ini berada di class *WebSecurityConfig*:  
+@Autowired  
+public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception{auth.userDetailsService(userDetailsService).passwordEncode(encoder());}  
+Seangkan Otorisasi adalah proses untuk menentukan apakah pengguna diijinkan atau ditolak untuk melakukan suatu aksi
+ataupun akses tertentu di dalam sistem. Contoh kode yang diimplementasikan pada bagian ini berada di class *WebSecurityConfig*:  
+.authorizeRequests()  
+.antMatchers("/css/**").permitAll()  
+.antMatchers("/js/**").permitAll()  
+.antMatchers("/hotel/**").hasAuthority("RECEPTIONIST")  
+.antMatchers("/user/addUser").hasAuthority("ADMIN")  
+.antMatchers("/kamar/add/**").hasAuthority("RECEPTIONIST")  
+Source: https://medium.com/@fahmiprasetiiio/authentication-dan-authorization-afa2029ff876  
+**2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!**  
+BCryptPasswordEncoder adalah salah satu encoder password dengan cara hashing khusus untuk penyimpanan password di dalam 
+sistem yang lebih aman. Cara kerja BCryptPasswordEncoder adalah ketika sudah mendapatkan sebuah string password yang 
+diisi oleh user, password akan dienkripsi dengan cara menggunakan hash Bcrypt yang sudah dirancang. Password yang sudah 
+dienkripsi tidak bisa di decrypt kembali.  
+**3. Jelaskan secara singkat apa itu UUID beserta penggunaannya!**  
+UUID (Universally Unique Identifier) merupakan 128-bit angka yang digunakan untuk identify information di sistem komputer. 
+Salah satu kegunaan UUID adalah untuk meningkatkan keamanan data. Hal ini dikarenakan UUID melakukan generate secara
+random dari untuk ID yang dibuat di dalam sistem sehingga kemungkinan dari sebuah data yang memiliki ID yang sama akan
+menjadi sangat kecil sehingga data tersimpan dengan ID lebih aman.  
+**4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class 
+UserRoleServiceImpl.java?**  
+class UserDetailsServiceImpl.java berguna untuk mendapatkan informasi otentikasi dan otorisasi dari pengguna. Tujuannya agar 
+Spring Boot Security dapat melakukan otorisasi terhadap pengguna yang melakukan login sesuai dengan rolenya yang sudah 
+terdaftar di database dari fungsi yang dimiliki oleh interface UserDetailsService. Sehingga dapat disimpulkan bahwa class
+UserDetailsServiceImpl sangat penting walaupun kita sudah memiliki UserRoleServiceImpl.

@@ -21,4 +21,13 @@ public class UserController {
         model.addAttribute("user", user);
         return "redirect:/";
     }
+
+    @RequestMapping(value = "/changePass", method = RequestMethod.POST)
+    public String changePasswordSubmit(@ModelAttribute UserModel user,String oldPassword, String newPassword,
+                                       String confirmPassword, Model model) {
+        String alert = userService.updatePassword(user, oldPassword, newPassword, confirmPassword);
+        model.addAttribute("alert", alert);
+        return "redirect:/";
+    }
+
 }

@@ -12,6 +12,13 @@ public class UserServiceImpl implements UserService {
     private UserDb userDb;
 
     @Override
+    public String encrypt(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+        return hashedPassword;
+    }
+
+    @Override
     public UserModel addUser(UserModel user) {
         String pass = encrypt(user.getPassword());
         user.setPassword(pass);
@@ -19,9 +26,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String encrypt(String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashedPassword = passwordEncoder.encode(password);
-        return hashedPassword;
+    public String updatePassword(UserModel user, String oldPassword, String newPassword, String confirmPassword) {
+        UserModel targetUser = userDb.findByUsername(user.getUsername());
+        try {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            if (passwordEncoder.matches(oldPassword, targetUser.getPassword())){
+                if (newPassword.equals(confirmPassword)){
+                    String pass = encrypt(confirmPassword);
+                    targetUser.setPassword(pass);
+                    userDb.save(targetUser);
+                    return "berhasil";
+                } else {
+                    return "Password baru dengan Konfirmasi password tidak sesuai!";
+                }
+            } else {
+                return "Password lama tidak benar";
+            }
+        } catch (NullPointerException e){
+            return null;
+        }
     }
 }

@@ -150,4 +150,26 @@ atau variabel pada th:object.
 Pada fragment.html, saya menggunakan *div class="navbar-text ml-auto" th:text="${brand}"*. *ml-auto* 
 digunakan agar terdapat text pada bagian kanan navbar yang sudah disesuaikan untuk setiap HTML. Kemudian, pada halaman 
 HTML yang ingin saya berikan text, saya menambahkan navbar (brand='NamaHTML/NamaHalaman') pada setiap pemanggilan *nav*
-di dalam body. Hal ini saya lakukan agar brand bisa diganti di seluruh html sesuai dengan keinginan saya.
+di dalam body. Hal ini saya lakukan agar brand bisa diganti di seluruh html sesuai dengan keinginan saya.  
+
+## Tutorial 5
+### Pertanyaan
+**1. Apa itu Postman? Apa kegunaannya?**  
+Postman adalah tool dalam melakukan proses *development* API yang berfungsi dengan cara menjadi REST Client. 
+Kegunaan postman adalah untuk Collection, Environment, Response, Mock Server, Script Test, Automated Test (Runner). 
+Sumber: https://medium.com/@novancimol12/postman-4f181d625fe1#:~:text=Postman%20merupakan%20tool%20untuk%20melakukan,Collection  
+**2. Apa kegunaan dari annotation @JsonIgnoreProperties dan @JsonProperty?**  
+@JsonIgnoreProperties digunakan untuk mengabaikan atribut apapun yang tidak tercantum pada class di dalam 
+serialization & deserialization JSON. Hal ini dapat memudahkan kita untuk panggilan REST dan menghasilkan objek domain.
+Sedangkan @JsonProperty digunakan untuk anotasi nonstandard getter/setter untuk mengindikasi bahwa adanya sebuah properti
+dalam JSON. Dengan JsonProperty, properti JSON pada field java yang sudah dianotasi akan dilakukan mapping oleh Jackson 
+ObjectMapper.  
+**3. Apa kegunaan attribut WebClient?**  
+Kegunaan attribut WebClient adalah untuk mewakili titik masuk dalam permintaan web seperti menerima respon serta 
+mengirimkan URI dan membuat mekanisme request dari sisi client. sumber: https://www.baeldung.com/spring-5-webclient  
+**4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?**  
+ResponseEntity merupakan salah satu class yang terdapat di Java untuk mempresentasikan keseluruhan HTTP response termasuk 
+headers, body, dan status. Sedangkan BindingResult merupakan sebuah interface yang memberi izin untuk validator yang biasanya 
+digunakan validasi adanya kesalahan ataupun *binding specific analysis and model building*. Contoh kesalahan tersebut 
+adalah adanya field yang diperlukan dan adanya ketidakcocokan jenis atau kesalahan dalam melakukan pemanggilan method. Sumber:  
+https://www.baeldung.com/spring-response-entity dan https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/validation/BindingResult.html

@@ -1,6 +1,5 @@
 package apap.tutorial.traveloke.service;
 
-import apap.tutorial.traveloke.model.HotelModel;
 import apap.tutorial.traveloke.model.KamarModel;
 
 import java.util.List;

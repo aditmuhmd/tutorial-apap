@@ -207,3 +207,183 @@ class UserDetailsServiceImpl.java berguna untuk mendapatkan informasi otentikasi
 Spring Boot Security dapat melakukan otorisasi terhadap pengguna yang melakukan login sesuai dengan rolenya yang sudah 
 terdaftar di database dari fungsi yang dimiliki oleh interface UserDetailsService. Sehingga dapat disimpulkan bahwa class
 UserDetailsServiceImpl sangat penting walaupun kita sudah memiliki UserRoleServiceImpl.
+
+## Tutorial 7
+### Pertanyaan
+**1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi
+dari apa yang Anda jelaskan.**  
+###### Soal 1
+Pada kali ini untuk menghilangkan checkbox, saya menggunakan *Ternary Display* yang bekerja seperti conditional untuk
+bisa melihat apakah checkbox bisa dimunculkan dan tidak dimunculkan. Pada kali ini saya memberikan code dimana mengecek
+apakah checked dari checkbox sudah true dan bila benar true, akan memunculkan checkbox di sebelah kanan atau my favorites.
+Kode yang dibuat ini diubah pada bagian index.js di component item. Code yang dibuat adalah:
+```
+{checked === true ? (
+    <input
+    type="checkbox"
+    className="ml-2"
+    checked={checked}
+    Change={handleChange} 
+    />
+) : (
+    null
+)}
+```
+Maka hasilnya akan seperti di bawah:  
+<img width="643" alt="(1)" src="https://user-images.githubusercontent.com/60350747/101043247-aee9b480-35b0-11eb-930c-374d537f56ff.png"> 
+###### Soal 2
+Pada kali ini saya membuat sebuah button yang mampu menghapus seluruh isi list favorite dengan cara membuat sebuah 
+fungsi di app.js yang mengubah state dari favItems menjadi kosong. Code yang saya buat adalah:
+```
+  deleteItemClick = () => {
+    this.setState({favItems: []});
+  }
+```
+Selanjutnya saya membuat button yang memanggil fungsi ini. Code yang dibuat adalah:
+```
+<button onClick={this.deleteItemClick}>Delete</button>
+```
+Untuk Tombol hanya akan muncul apabila sudah ada item di dalam list favorites, dapat dilihat source code nya pada bagian
+nomor 5 dengan cara *Ternary Display*. Hasil dari kode yang sudah dibuat adalah:
+- Sebelum dihapus
+![image](https://user-images.githubusercontent.com/60350747/101043904-5ff04f00-35b1-11eb-8c06-b2bfa9e48a9d.png)
+- Sesudah dihapus
+![image](https://user-images.githubusercontent.com/60350747/101043971-73031f00-35b1-11eb-997c-6ccf3e4578fe.png)
+###### Soal 3
+Untuk membuat fungsi di bagian kiri yang hanya bisa melakukan add, saya hanya menghapus salah satu line dari kode 
+handleItemClick yaitu *else newItems.splice(targetInd,1);*. Kode ini membuat item dari sebelah kanan akan dikembalikan
+kembali ke semula ke sebelah kiri sehingga masih bisa melakukan delete kembali. Sehingga ketika kita menghapus line code
+ini, bagian kiri hanya bisa melakukan Add.
+###### Soal 4
+Pada soal kali ini, saya hal yang pertama kali saya lakukan adalah membuat line code untuk toggle switch. Source code
+yang saya ambil berasal dari https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch. Selanjutnya saya 
+membuat fungsi *toggleFunction* yang membuat salah satu elemen dari div akan dibuat menjadi hilang atau _block_. Code
+yang saya buat adalah:
+App.js
+```
+  // Fungsi Toggle 
+  toggleFunction = () => {
+    var x = document.getElementById("favorite");
+    if (x.style.display == "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+        // Memanggil switch
+        <div className="d-flex justify-content-center align-items-center">
+          <label class="switch">
+            <input type="checkbox" onClick={this.toggleFunction}/>
+            <span class="slider round"></span>
+          </label>
+          <p className="col-1">Show Favorites</p>
+        </div>
+```
+App.css
+```
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+#favorite {
+  display: none;
+}
+```
+Cara kerja dari kode ini adalah div dengan id *favorite* secara default akan memiliki display none atau tidak ada. 
+Selanjutnya ketika tombol diklik, maka display akan menjadi block yang mengakibatkan tampilan muncul. Hal ini dilakukan
+sebaliknya untuk menghilangkan tampilan favorit. Maka hasil dari pengerjaan ini adalah sebagai berikut:
+- Sebelum diklik
+![image](https://user-images.githubusercontent.com/60350747/101046349-8e6f2980-35b3-11eb-932b-ce78dfb969c2.png)
+- Sesudah diklik
+![image](https://user-images.githubusercontent.com/60350747/101046421-9cbd4580-35b3-11eb-9d66-87a5f6997885.png)
+###### Soal 5
+Untuk membuat fitur ketika daftar favorit kosong, saya kembali menggunakan *Ternary Display* dengan kondisional item dari
+favorit items masih kosong. Ketika masih kosong, maka tampilkan tulisan bahwa tampilan belum ada. Namun ketika hasil ada,
+maka tampilkan seluruh list item favorit disertai dengan button yang sudah dibuat. Code yang saya buat berada pada 
+bagian App.js dengan syntax sebagai berikut:
+```
+              {favItems.length === 0 ? (
+                <div className="text-center">
+                  <h2>Belum ada item yang dipilih</h2>
+                  <h5>Klik salah satu item di List Movies</h5>
+                </div>
+              ) : (
+                <button onClick={this.deleteItemClick}>Delete</button>
+              )}
+```
+Hasil dari kode ini akan terlihat seperti di bawah:
+![image](https://user-images.githubusercontent.com/60350747/101046421-9cbd4580-35b3-11eb-9d66-87a5f6997885.png)
+**2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?**  
+Menurut saya, state adalah sebuah data private dari sebuah component yang hanya bisa tersedia untuk component tersebut
+tanpa bisa diakses dari component lain. Sedangkankan props adalah singkatan dari *property* yang merupakan sebuah
+parameter dari fungsi component. Bentuk props sangat mirip seperti attribute pada tag HTML. Sumber: https://medium.com/coderupa/react-prop-state-apa-bedanya-7ee61df8257f
+**3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!**  
+Keuntungan menggunakan component di React adalah kita bisa membuat suatu code yang bisa direuse berkali-kali sesuai dengan
+kebutuhan dan kita tinggal panggil saja misalnya di bagian App.js. Contohnya adalah pada tutorial kali ini dimana ada
+component List dan Item yang bisa dipanggil ulang untuk menampilkan seluruh film yang ada di file json sekaligus menampilkan
+seluruh hasil favorit. Kode ini bisa kita panggil berkali-kali sesuai denga kebutuhan kita.
+**4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?**  
+Kelebihan dalam menggunakan React adalah komponen yang dapat digunakan kembali seperti dari nomor 3, membuat aplikasi web
+dinamis menjadi lebih mudah dikarenakan React dibuat menggunakan Javascript yang terkenal dengan animasi serta desain yang
+baik dalam website, dan mampu memanfaatkan Javascript Library untuk diimplementasikan ke dalam website.
+**5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?**  
+Kekurangan dari React dalam pengembangan web adalah hanya mendukung website yang baru-baru saja seperti Google Chrome
+dan Mozila Firefox. Untuk browser lama, tidak akan bisa disupport oleh React. Selanjutnya juga dokumentasi dari ReactJS
+kurang lengkap dan sistematis sehingga bagi seorang developer yang baru belajar (terutama saya yang tidak suka Javascript) 
+cukup sulit untuk fasih menggunakan ReactJs.

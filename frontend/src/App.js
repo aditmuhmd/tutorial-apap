@@ -26,6 +26,15 @@ export default class App extends React.Component {
     this.setState({favItems: []});
   }
 
+  toggleFunction = () => {
+    var x = document.getElementById("favorite");
+    if (x.style.display == "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+
   render(){
     const { favItems } = this.state;
     return(
@@ -36,7 +45,7 @@ export default class App extends React.Component {
         </p>
         <div className="text-center text-secondary text-sm">
           <label class="switch">
-            <input type="checkbox"/>
+            <input type="checkbox" onClick={this.toggleFunction}/>
             <span class="slider round"></span>
           </label>
           <p>Show Favorites</p>
@@ -50,14 +59,14 @@ export default class App extends React.Component {
                 onItemClick={this.handleItemClick}
               />
             </div>
-            <div className="col-sm">
+            <div className="col-sm" id="favorite">
               <List
                 title="My Favorites"
                 items={favItems}
                 // onItemClick={this.handleItemClick}
               />
               {favItems.length == 0 ? (
-                null // <span>List Favourite Tak Ade</span>
+                 <span>List Favourite Tak Ade</span>
               ) : (
                 <button onClick={this.deleteItemClick}>Delete</button>
               )}  

@@ -372,16 +372,16 @@ Hasil dari kode ini akan terlihat seperti di bawah:
 **2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?**  
 Menurut saya, state adalah sebuah data private dari sebuah component yang hanya bisa tersedia untuk component tersebut
 tanpa bisa diakses dari component lain. Sedangkankan props adalah singkatan dari *property* yang merupakan sebuah
-parameter dari fungsi component. Bentuk props sangat mirip seperti attribute pada tag HTML. Sumber: https://medium.com/coderupa/react-prop-state-apa-bedanya-7ee61df8257f
+parameter dari fungsi component. Bentuk props sangat mirip seperti attribute pada tag HTML. Sumber: https://medium.com/coderupa/react-prop-state-apa-bedanya-7ee61df8257f  
 **3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!**  
 Keuntungan menggunakan component di React adalah kita bisa membuat suatu code yang bisa direuse berkali-kali sesuai dengan
 kebutuhan dan kita tinggal panggil saja misalnya di bagian App.js. Contohnya adalah pada tutorial kali ini dimana ada
 component List dan Item yang bisa dipanggil ulang untuk menampilkan seluruh film yang ada di file json sekaligus menampilkan
-seluruh hasil favorit. Kode ini bisa kita panggil berkali-kali sesuai denga kebutuhan kita.
+seluruh hasil favorit. Kode ini bisa kita panggil berkali-kali sesuai denga kebutuhan kita.  
 **4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?**  
 Kelebihan dalam menggunakan React adalah komponen yang dapat digunakan kembali seperti dari nomor 3, membuat aplikasi web
 dinamis menjadi lebih mudah dikarenakan React dibuat menggunakan Javascript yang terkenal dengan animasi serta desain yang
-baik dalam website, dan mampu memanfaatkan Javascript Library untuk diimplementasikan ke dalam website.
+baik dalam website, dan mampu memanfaatkan Javascript Library untuk diimplementasikan ke dalam website.  
 **5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?**  
 Kekurangan dari React dalam pengembangan web adalah hanya mendukung website yang baru-baru saja seperti Google Chrome
 dan Mozila Firefox. Untuk browser lama, tidak akan bisa disupport oleh React. Selanjutnya juga dokumentasi dari ReactJS

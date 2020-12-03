@@ -26,6 +26,23 @@ export default class App extends React.Component {
     this.setState({favItems: []});
   }
 
+  addItemClick = (item) => {
+    // Immutability
+    const newItems = [ ... this.state.favItems];
+    const newItem = { ... item};
+    // Find Item index using id
+    const targetInd = newItems.findIndex((it) => it.id == newItem.id);
+
+    if (targetInd < 0) newItems.push(newItem);
+
+    // Trigger set state
+    this.setState({ favItems: newItems});
+  };
+  
+  deleteItemClick = () => {
+    this.setState({favItems: []});
+  }
+
   toggleFunction = () => {
     var x = document.getElementById("favorite");
     if (x.style.display == "block") {
@@ -43,12 +60,12 @@ export default class App extends React.Component {
         <p className="text-center text-secondary text-sm font-italic">
           (This is a <strong>class-based</strong> application)
         </p>
-        <div className="text-center text-secondary text-sm">
-          <label class="switch">
+        <div className="d-flex justify-content-center align-items-center">
+          <label class="switch">s
             <input type="checkbox" onClick={this.toggleFunction}/>
             <span class="slider round"></span>
           </label>
-          <p>Show Favorites</p>
+          <p className="col-1">Show Favorites</p>
         </div>
         <div className="container pt-3">
           <div className="row">
@@ -56,17 +73,20 @@ export default class App extends React.Component {
               <List
                 title="List Movies"
                 items={listMovies}
-                onItemClick={this.handleItemClick}
+                onItemClick={this.addItemClick}
               />
             </div>
             <div className="col-sm" id="favorite">
               <List
                 title="My Favorites"
                 items={favItems}
-                // onItemClick={this.handleItemClick}
+                onItemClick={this.handleItemClick}
               />
               {favItems.length == 0 ? (
-                 <span>List Favourite Tak Ade</span>
+                <div className="text-center">
+                  <h2>Belum ada item yang dipilih</h2>
+                  <h5>Klik salah satu item di List Movies</h5>
+                </div>
               ) : (
                 <button onClick={this.deleteItemClick}>Delete</button>
               )}  

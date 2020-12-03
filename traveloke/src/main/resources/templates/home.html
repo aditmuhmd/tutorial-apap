@@ -39,6 +39,9 @@
                 <div class="card-header">Tambah User Baru</div>
                 <div class="card-body">
                     <form th:action="@{/user/addUser}" method="POST">
+                        <div th:if="${hasNotif}">
+                            <p th:text="${notif}" class="alert alert-info" role="alert"></p>
+                        </div>
                         <label>User Name</label>
                         <input type="text" name="username" class="form-control"/>
 

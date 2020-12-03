@@ -1,6 +1,7 @@
 package apap.tutorial.traveloke.controller;
 
 import apap.tutorial.traveloke.model.UserModel;
+import apap.tutorial.traveloke.service.RoleService;
 import apap.tutorial.traveloke.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +16,25 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-    public String addUserSubmit(@ModelAttribute UserModel user, Model model){
-        userService.addUser(user);
+    public String addUserSubmit(
+            @ModelAttribute UserModel user, Model model){
+        String notif = null;
+        try {
+            userService.addUser(user);
+            notif = "User berhasil dibuat";
+        } catch (Exception e){
+            notif = "Gagal, username tersebut telah terdaftar";
+        }
+        boolean hasNotif = (notif != null);
         model.addAttribute("user", user);
-        return "redirect:/";
+        model.addAttribute("notif", notif);
+        model.addAttribute("hasNotif", hasNotif);
+        model.addAttribute("listRole", roleService.findAll());
+        return "home";
     }
 
     @RequestMapping(value = "/changePass", method = RequestMethod.POST)

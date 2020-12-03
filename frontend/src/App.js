@@ -61,7 +61,7 @@ export default class App extends React.Component {
           (This is a <strong>class-based</strong> application)
         </p>
         <div className="d-flex justify-content-center align-items-center">
-          <label class="switch">s
+          <label class="switch">
             <input type="checkbox" onClick={this.toggleFunction}/>
             <span class="slider round"></span>
           </label>
@@ -82,7 +82,7 @@ export default class App extends React.Component {
                 items={favItems}
                 onItemClick={this.handleItemClick}
               />
-              {favItems.length == 0 ? (
+              {favItems.length === 0 ? (
                 <div className="text-center">
                   <h2>Belum ada item yang dipilih</h2>
                   <h5>Klik salah satu item di List Movies</h5>

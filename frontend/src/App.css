@@ -100,3 +100,14 @@ input:checked + .slider:before {
 #favorite {
   display: none;
 }
+
+/* Dark Mode */
+.light-mode{
+  background: white;
+  color: black;
+}
+
+.dark-mode {
+  background: rgb(20, 20, 20);
+  color: white;
+}

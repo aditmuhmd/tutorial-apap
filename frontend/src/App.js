@@ -6,7 +6,7 @@ import "./App.css";
 
 export default class App extends React.Component {
   state = {
-    favItems: [],
+    favItems: []
   };
   handleItemClick = (item) => {
     // Immutability
@@ -52,10 +52,15 @@ export default class App extends React.Component {
     }
   }
 
+  darkMode = () => {
+    this.setState(prevState => ({
+      darkmode: !prevState.darkmode
+    }));
+  }
   render(){
     const { favItems } = this.state;
     return(
-      <div className="container-fluid">
+        <div className={this.state.darkmode ? "container-fluid bg-dark text-white": "container-fluid"}>
         <h1 className="text-center mt-3 mb-0">Favorites Movie App</h1>
         <p className="text-center text-secondary text-sm font-italic">
           (This is a <strong>class-based</strong> application)
@@ -66,6 +71,13 @@ export default class App extends React.Component {
             <span class="slider round"></span>
           </label>
           <p className="col-1">Show Favorites</p>
+        </div>
+        <div className="d-flex justify-content-center align-items-center">
+          <label class="switch">
+            <input type="checkbox" onClick={this.dark}/>
+            <span class="slider round"></span>
+          </label>
+          <p className="col-1">Dark Mode</p>
         </div>
         <div className="container pt-3">
           <div className="row">

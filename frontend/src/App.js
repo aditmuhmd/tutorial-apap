@@ -52,7 +52,7 @@ export default class App extends React.Component {
     }
   }
 
-  darkMode = () => {
+  dark = () => {
     this.setState(prevState => ({
       darkmode: !prevState.darkmode
     }));

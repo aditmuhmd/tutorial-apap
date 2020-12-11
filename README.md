@@ -387,3 +387,34 @@ Kekurangan dari React dalam pengembangan web adalah hanya mendukung website yang
 dan Mozila Firefox. Untuk browser lama, tidak akan bisa disupport oleh React. Selanjutnya juga dokumentasi dari ReactJS
 kurang lengkap dan sistematis sehingga bagi seorang developer yang baru belajar (terutama saya yang tidak suka Javascript) 
 cukup sulit untuk fasih menggunakan ReactJs.
+
+## Tutorial 8
+### Pertanyaan
+**1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?**  
+Untuk solve latihan no.1, saya menambahkan this.setState pada handleAddHotel() dengan value "" (default) untuk namaHotel, alamat, dan nomorTelepon. Dengan begitu, default state pada form akan kembali setelah melakukan submit.
+
+**2. Jelaskan fungsi dari async dan await!**  
+async berfungsi untuk memberitahu bahwa fungsi yang dibuat bersifat asinkron atau non-blocking. Sedangkan await berfungsi untuk menangani proses asinkron yang sedang running hingga selesai sebelum code setelah await dijalankan. Implementasi async dan await pada tutorial ini adalah pada method loadData() di index.js HotelList.  
+
+**3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 7 pada Component Lifecycle pada pertanyaan ini.**  
+<img width="272" alt="1" src="https://user-images.githubusercontent.com/60350747/101927415-0cac7b00-3c07-11eb-8817-e439a5fa6f90.png">
+<img width="960" alt="2" src="https://user-images.githubusercontent.com/60350747/101927450-13d38900-3c07-11eb-9236-0f22fb76c8dd.png">
+<img width="347" alt="3" src="https://user-images.githubusercontent.com/60350747/101927456-159d4c80-3c07-11eb-987e-7bb60796848f.png">
+<img width="376" alt="4" src="https://user-images.githubusercontent.com/60350747/101927458-16ce7980-3c07-11eb-8563-d640035c25a2.png">
+<img width="960" alt="5" src="https://user-images.githubusercontent.com/60350747/101927461-18983d00-3c07-11eb-9518-0efa68d50a8e.png">
+
+**4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount.**  
+*Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja yang biasanya menggunakan lifecycle method tersebut”.*  
+ - componentDidMount merupakan lifecycle method yang dipanggil setelah component telah selesai render. Lifecycle method ini digunakan saat pengambilan/fetching data.
+
+ - shouldComponentUpdate merupakan lifecycle method yang dipanggil sebelum props/state dari component dirender ulang karena mengalami perubahan. Component akan di render ulang jika return nya adalah true, jika false component tidak akan di render ulang.  
+ Lifecycle method ini digunakan untuk menentukan apakah perubahan yang terjadi akan ditampilkan/tidak.  
+
+ - componentDidUpdate merupakan lifecycle method yang dijalankan setelah component yang telah diupdate sudah selesai dirender.  
+ Lifecycle method ini  biasanya digunakan saat melakukan interaksi dengan environment non-React. 
+
+ - componentWillReceiveProps merupakan lifecycle method yang dijalankan sebelum component mengisi props yang baru dan mengalami pembaruan.  
+ Lifecycle method ini digunakan untuk mengetahui apakah terdapat perubahan pada props atau tidak, tanpa melakukan render kembal.
+
+ - componentWillUnmount merupakan lifecycle method yang dijalankan sebelum component di hapus dari DOM. Lifecycle method ini digunakan untuk melakukan cleanup seperti membatalkan network request dan menghilangkan event listener.
+

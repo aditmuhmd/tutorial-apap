@@ -55,6 +55,11 @@ class HotelList extends Component {
             };
             await APIConfig.post("/hotel", data);
             this.loadData();
+            this.setState({
+                namaHotel: "",
+                alamat: "",
+                nomorTelepon: "",
+            });
         } catch (error) {
             alert("Oops terjadi masalah pada server");
             console.log(error);
@@ -109,6 +114,7 @@ class HotelList extends Component {
             namaHotel: "",
             alamat: "",
             nomorTelepon: "",
+            search:"",
         };
         this.handleAddHotel = this.handleAddHotel.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -144,7 +150,7 @@ class HotelList extends Component {
                     <h3 className={classes.modalTitle}>
                         {this.state.isCreate
                         ? "Add Hotel"
-                        : `Edit Hotel Nomor ${this.state.id}`}}
+                        : `Edit Hotel Nomor ${this.state.id}`}
                     </h3>
                     <input
                         className={classes.textField}

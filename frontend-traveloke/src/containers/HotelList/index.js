@@ -32,9 +32,9 @@ class HotelList extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log("shouldComponentUpdate()");
-        return(true);
+        return (true);
     }
-    
+
     async loadData() {
         try {
             const { data } = await APIConfig.get("/hotels");
@@ -76,7 +76,7 @@ class HotelList extends Component {
             nomorTelepon: hotel.nomorTelepon,
         });
     }
-    
+
     async handleSubmitEditHotel(event) {
         event.preventDefault();
         try {
@@ -102,10 +102,10 @@ class HotelList extends Component {
             alert("Oops terjadi masalah pada server");
             console.log(error);
         }
-    }        
-    
-    searchHotel(event){
-        this.setState({search: event.target.value.substr(0,20)})
+    }
+
+    searchHotel(event) {
+        this.setState({ search: event.target.value.substr(0, 20) })
     }
 
     constructor(props) {
@@ -118,7 +118,7 @@ class HotelList extends Component {
             namaHotel: "",
             alamat: "",
             nomorTelepon: "",
-            search:"",
+            search: "",
         };
         this.handleAddHotel = this.handleAddHotel.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
@@ -138,74 +138,77 @@ class HotelList extends Component {
         );
         return (
             <div className={classes.hotelList}>
-            <h1 className={classes.title}>All Hotels</h1>
-            <Button onClick={this.handleAddHotel} variant="primary">
-                Add Hotel
-            </Button>
-            <input className={classes.search} type="text" placeholder = "Search Hotel" value={this.state.search} onChange={this.searchHotel.bind(this)}></input>
-            <div>
-                {filteredHotels.map((hotel) => (
-                    <Hotel
-                    key={hotel.id}
-                    id={hotel.id}
-                    namaHotel={hotel.namaHotel}
-                    alamat={hotel.alamat}
-                    nomorTelepon={hotel.nomorTelepon}
-                    handleEdit={() => this.handleEditHotel(hotel)}
-                    handleDelete={() => this.handleDeleteHotel(hotel.id)}
-                    />
-                ))}
-            </div>
-            <Modal show={this.state.isCreate || this.state.isEdit} handleCloseModal={this.handleCancel}>
-                <form>
-                    <h3 className={classes.modalTitle}>
-                        {this.state.isCreate
-                        ? "Add Hotel"
-                        : `Edit Hotel Nomor ${this.state.id}`}
-                    </h3>
-                    <input
-                        className={classes.textField}
-                        type="text"
-                        placeholder="Nama Hotel"
-                        name="namaHotel"
-                        value={this.state.namaHotel}
-                        onChange={this.handleChangeField}
-                    />
-                    <input
-                        className={classes.textField}
-                        type="text"
-                        placeholder="Alamat"
-                        name="alamat"
-                        value={this.state.alamat}
-                        onChange={this.handleChangeField}
-                    />
-                    <textarea
-                        className={classes.textField}
-                        placeholder="Nomor Telepon"
-                        name="nomorTelepon"
-                        rows="4"
-                        value={this.state.nomorTelepon}
-                        onChange={this.handleChangeField}
-                    />
-                    <Button
-                        onClick={
-                            this.state.isCreate
-                            ? this.handleSubmitAddHotel
-                            : this.handleSubmitEditHotel
-                        }
-                        variant="primary"
-                    >
-                        {this.state.isCreate ? "Create" : "Edit"}
-                    </Button>
+                <h1 className={classes.title}>All Hotels</h1>
+                <Button onClick={this.handleAddHotel} variant="primary">
+                    Add Hotel
+                </Button>
+                <input className={classes.search} type="text" placeholder="Search Hotel"
+                    value={this.state.search} onChange={this.searchHotel.bind(this)}>
+                </input>
+                <div>
+                    {filteredHotels.map((hotel) => (
+                        <Hotel
+                            key={hotel.id}
+                            id={hotel.id}
+                            namaHotel={hotel.namaHotel}
+                            alamat={hotel.alamat}
+                            nomorTelepon={hotel.nomorTelepon}
+                            handleEdit={() => this.handleEditHotel(hotel)}
+                            handleDelete={() => this.handleDeleteHotel(hotel.id)}
+                            listKamar={hotel.listKamar}
+                        />
+                    ))}
+                </div>
+                <Modal show={this.state.isCreate || this.state.isEdit} handleCloseModal={this.handleCancel}>
+                    <form>
+                        <h3 className={classes.modalTitle}>
+                            {this.state.isCreate
+                                ? "Add Hotel"
+                                : `Edit Hotel Nomor ${this.state.id}`}
+                        </h3>
+                        <input
+                            className={classes.textField}
+                            type="text"
+                            placeholder="Nama Hotel"
+                            name="namaHotel"
+                            value={this.state.namaHotel}
+                            onChange={this.handleChangeField}
+                        />
+                        <input
+                            className={classes.textField}
+                            type="text"
+                            placeholder="Alamat"
+                            name="alamat"
+                            value={this.state.alamat}
+                            onChange={this.handleChangeField}
+                        />
+                        <textarea
+                            className={classes.textField}
+                            placeholder="Nomor Telepon"
+                            name="nomorTelepon"
+                            rows="4"
+                            value={this.state.nomorTelepon}
+                            onChange={this.handleChangeField}
+                        />
+                        <Button
+                            onClick={
+                                this.state.isCreate
+                                    ? this.handleSubmitAddHotel
+                                    : this.handleSubmitEditHotel
+                            }
+                            variant="primary"
+                        >
+                            {this.state.isCreate ? "Create" : "Edit"}
+                        </Button>
 
-                    <Button onClick={this.handleCancel} variant="danger">
-                        Cancel
+                        <Button onClick={this.handleCancel} variant="danger">
+                            Cancel
                     </Button>
-                </form>
-            </Modal>
+                    </form>
+                </Modal>
             </div>
-            );
-        }
+        );
     }
+}
 
 export default HotelList;

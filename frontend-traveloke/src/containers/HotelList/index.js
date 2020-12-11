@@ -103,6 +103,10 @@ class HotelList extends Component {
             console.log(error);
         }
     }        
+    
+    searchHotel(event){
+        this.setState({search: event.target.value.substr(0,20)})
+    }
 
     constructor(props) {
         super(props);
@@ -126,24 +130,31 @@ class HotelList extends Component {
     }
 
     render() {
+        let filteredHotels = this.state.hotels.filter(
+            (hotel) => {
+                return hotel.namaHotel.indexOf(this.state.
+                    search) !== -1;
+            }
+        );
         return (
             <div className={classes.hotelList}>
             <h1 className={classes.title}>All Hotels</h1>
             <Button onClick={this.handleAddHotel} variant="primary">
                 Add Hotel
             </Button>
+            <input className={classes.search} type="text" placeholder = "Search Hotel" value={this.state.search} onChange={this.searchHotel.bind(this)}></input>
             <div>
-            {this.state.hotels.map((hotel) => (
-                <Hotel
-                key={hotel.id}
-                id={hotel.id}
-                namaHotel={hotel.namaHotel}
-                alamat={hotel.alamat}
-                nomorTelepon={hotel.nomorTelepon}
-                handleEdit={() => this.handleEditHotel(hotel)}
-                handleDelete={() => this.handleDeleteHotel(hotel.id)}
-                />
-            ))}
+                {filteredHotels.map((hotel) => (
+                    <Hotel
+                    key={hotel.id}
+                    id={hotel.id}
+                    namaHotel={hotel.namaHotel}
+                    alamat={hotel.alamat}
+                    nomorTelepon={hotel.nomorTelepon}
+                    handleEdit={() => this.handleEditHotel(hotel)}
+                    handleDelete={() => this.handleDeleteHotel(hotel.id)}
+                    />
+                ))}
             </div>
             <Modal show={this.state.isCreate || this.state.isEdit} handleCloseModal={this.handleCancel}>
                 <form>

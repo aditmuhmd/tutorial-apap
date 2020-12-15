@@ -4,6 +4,7 @@ import Button from "../../components/Button";
 import classes from "./styles.module.css";
 import APIConfig from "../../api/APIConfig";
 import Modal from "../../components/Modal";
+import { trackPromise } from 'react-promise-tracker';
 
 class HotelList extends Component {
     handleAddHotel() {
@@ -39,6 +40,7 @@ class HotelList extends Component {
         try {
             const { data } = await APIConfig.get("/hotels");
             this.setState({ hotels: data });
+            this.setState({ isLoading: true });
         } catch (error) {
             alert("Oops terjadi masalah pada server");
             console.log(error);
